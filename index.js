@@ -63,6 +63,24 @@ const client = new MongoClient(uri, {
             const result = await bookingCollection.insertOne(booking);
             res.send(result);
         });
+
+        app.put('/bookings/:id', async(req, res)=>{
+            const id = req.params.id;
+            console.log(id);
+            const filter = { _id: new ObjectId(id) }
+            const updatedBookings = req.body;
+            console.log(updatedBookings);
+            // const updateDoc = {
+            //     $set:{
+            //         status: updatedBookings.status
+            //     },
+            // };
+            // const result = await bookingCollection.updateOne(filter, updateDoc);
+            // res.send(result);
+
+
+        })
+
         app.delete('/bookings/:id', async(req, res) => {
             const id = req.params.id;
             const query = { _id: new ObjectId(id) }
